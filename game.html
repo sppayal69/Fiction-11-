@@ -1,21 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiction 11 - Build Team</title>
+<title>Fiction 11 - Fantasy Cricket</title>
 <style>
-  body { background: #1a3c6e; color: white; font-family: Arial; padding: 20px; }
-  h1 { text-align: center; color: #ffeb3b; }
-  #credit { color: #4caf50; font-weight: bold; }
-  #myTeam { background: #2a4f8a; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
-  .game-card { background: #2a4f8a; padding: 15px; margin: 10px; border-radius: 10px; display: inline-block; width: 250px; }
-  button { background: #ff5722; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; }
+  body { 
+    background: #f5f5f5; 
+    color: #333; 
+    font-family: 'Arial', sans-serif; 
+    padding: 15px; 
+    margin: 0;
+  }
+  .header {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  h1 { 
+    color: #ffeb3b; 
+    font-size: 32px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  .subtitle { color: white; margin: 5px 0 0 0; font-size: 14px; }
+  #credit { color: #4caf50; font-weight: bold; font-size: 18px; }
+  #wallet { 
+    background: white; padding: 15px; border-radius: 12px; 
+    text-align: center; margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 2px solid #ff9800;
+  }
+  #myTeam { 
+    background: white; padding: 15px; border-radius: 12px; 
+    margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .game-card { 
+    background: white; padding: 15px; margin: 10px 0; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 5px solid #2a5298;
+  }
+  button { 
+    background: #ff5722; color: white; border: none; padding: 12px; 
+    border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px;
+    font-weight: bold; font-size: 16px;
+  }
+  .join-btn { background: linear-gradient(90deg, #4caf50, #2e7d32); font-size: 18px; }
 </style>
 </head>
 <body>
 
-<h1>⚡ Fiction 11 ⚡</h1>
+<div class="header">
+  <h1>⚡ FICTION 11 ⚡</h1>
+  <p class="subtitle">ফ্যান্টাসি খেলুন • আসল টাকা জিতুন</p>
+</div>
+
+<div id="wallet">ওয়ালেট ব্যালেন্স: <span id="balance">0</span> টাকা <button onclick="addMoney()">+ টাকা যোগ করুন</button></div>
 <div id="games"></div>
 
 <script>
@@ -31,9 +72,19 @@ const bplPlayers = [
 
 let myBPLTeam = [];
 let totalCredit = 100;
+let walletBalance = localStorage.getItem("wallet") || 0;
+document.getElementById("balance").innerText = walletBalance;
+
+function addMoney() {
+  let amount = prompt("Enter amount to add:");
+  walletBalance = parseInt(walletBalance) + parseInt(amount);
+  localStorage.setItem("wallet", walletBalance);
+  document.getElementById("balance").innerText = walletBalance;
+  alert(amount + " Taka added to wallet!");
+}
 
 function showBPLPlayers() {
-  let html = `<h2>🏆 BPL 2026 Build Team - 100 Credits</h2>`;
+  let html = `<h2>🏆 BPL 2026 - Build Team - 100 Credits</h2>`;
   html += `<p>Credits Left: <span id="credit">${totalCredit}</span></p>`;
   html += `<div id="myTeam"><h3>My Team: ${myBPLTeam.length}/7</h3><ul id="teamList"></ul></div>`;
 
@@ -45,6 +96,8 @@ function showBPLPlayers() {
       <button onclick="addBPLPlayer(${i})">Add to Team</button>
     </div>`;
   });
+  
+  html += `<button class="join-btn" onclick="joinContest()">Join Contest - 20 Taka</button>`;
   document.getElementById("games").innerHTML = html;
   updateTeamList();
 }
@@ -57,7 +110,7 @@ function addBPLPlayer(i) {
     document.getElementById("credit").innerText = totalCredit.toFixed(1);
     updateTeamList();
   } else if(myBPLTeam.length >= 7) {
-    alert("You already picked 7 players!");
+    alert("You already selected 7 players!");
   } else {
     alert("Not enough credits!");
   }
@@ -71,8 +124,22 @@ function updateTeamList() {
   });
 }
 
+function joinContest() {
+  if(myBPLTeam.length < 7) {
+    alert("Please select 7 players first");
+    return;
+  }
+  if(walletBalance < 20) {
+    alert("Not enough balance! Please add money");
+    return;
+  }
+  walletBalance = walletBalance - 20;
+  localStorage.setItem("wallet", walletBalance);
+  document.getElementById("balance").innerText = walletBalance;
+  alert("Contest joined! 20 Taka deducted.\nGood Luck!");
+}
+
 showBPLPlayers();
 </script>
-
 </body>
 </html>
