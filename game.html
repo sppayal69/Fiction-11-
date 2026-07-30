@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiction 11 - Build Team</title>
+<style>
+  body { background: #1a3c6e; color: white; font-family: Arial; padding: 20px; }
+  h1 { text-align: center; color: #ffeb3b; }
+  #credit { color: #4caf50; font-weight: bold; }
+  #myTeam { background: #2a4f8a; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+  .game-card { background: #2a4f8a; padding: 15px; margin: 10px; border-radius: 10px; display: inline-block; width: 250px; }
+  button { background: #ff5722; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>⚡ Fiction 11 ⚡</h1>
+<div id="games"></div>
+
+<script>
+const bplPlayers = [
+  {name: "Tamim Iqbal", team: "Barishal", role: "Batter", credit: 9},
+  {name: "Shakib Al Hasan", team: "Barishal", role: "All-rounder", credit: 10},
+  {name: "Litton Das", team: "Cumilla", role: "WK-Batter", credit: 9},
+  {name: "Mustafizur Rahman", team: "Cumilla", role: "Bowler", credit: 8.5},
+  {name: "Taskin Ahmed", team: "Dhaka", role: "Bowler", credit: 9},
+  {name: "Mahmudullah", team: "Dhaka", role: "All-rounder", credit: 8},
+  {name: "Soumya Sarkar", team: "Rangpur", role: "Batter", credit: 7.5}
+];
+
+let myBPLTeam = [];
+let totalCredit = 100;
+
+function showBPLPlayers() {
+  let html = `<h2>🏆 BPL 2026 Build Team - 100 Credits</h2>`;
+  html += `<p>Credits Left: <span id="credit">${totalCredit}</span></p>`;
+  html += `<div id="myTeam"><h3>My Team: ${myBPLTeam.length}/7</h3><ul id="teamList"></ul></div>`;
+
+  bplPlayers.forEach((p, i) => {
+    html += `<div class="game-card">
+      <h3>${p.name}</h3>
+      <p>Team: ${p.team} | Role: ${p.role}</p>
+      <p>Credit: ${p.credit}</p>
+      <button onclick="addBPLPlayer(${i})">Add to Team</button>
+    </div>`;
+  });
+  document.getElementById("games").innerHTML = html;
+  updateTeamList();
+}
+
+function addBPLPlayer(i) {
+  let player = bplPlayers[i];
+  if(myBPLTeam.length < 7 && totalCredit >= player.credit) {
+    myBPLTeam.push(player);
+    totalCredit = totalCredit - player.credit;
+    document.getElementById("credit").innerText = totalCredit.toFixed(1);
+    updateTeamList();
+  } else if(myBPLTeam.length >= 7) {
+    alert("You already picked 7 players!");
+  } else {
+    alert("Not enough credits!");
+  }
+}
+
+function updateTeamList() {
+  let list = document.getElementById("teamList");
+  list.innerHTML = "";
+  myBPLTeam.forEach(p => {
+    list.innerHTML += `<li>${p.name} - ${p.credit} cr</li>`;
+  });
+}
+
+showBPLPlayers();
+</script>
+
+</body>
+</html>
