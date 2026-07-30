@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiction 11 - Fantasy Game Platform</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiction 11 - Login</title>
+<style>
+  body { background: #1a3c6e; color: white; font-family: Arial; text-align: center; padding-top: 100px; }
+  .box { background: #2a4f8a; padding: 30px; border-radius: 15px; width: 300px; margin: auto; }
+  input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 8px; border: none; }
+  button { background: #ff5722; color: white; border: none; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; margin: 5px; }
+  h1 { color: #ffeb3b; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>⚡ Fiction 11 ⚡</h1>
-    <p>Play Fantasy. Win Big. Be a Legend.</p>
-    <button onclick="alert('Coming Soon!')">Play Now</button>
-  </header>
-<div id="games"></div>
-  <section class="games">
-    <h2>🌎 Choose Your Game</h2>
-    <div class="game-list">
-      <div class="game-card"><h3>🏏 Cricket</h3><p>Create your Fantasy Team</p><button>Join</button></div>
-      <div class="game-card"><h3>⚽ Football</h3><p>Build your Dream 11</p><button>Join</button></div>
-      <div class="game-card"><h3>🎮 Free Fire</h3><p>Fantasy Esports Battle</p><button>Join</button></div>
-      <div class="game-card"><h3>🤼 WWE</h3><p>Pick your Fantasy Fighter</p><button>Join</button></div>
-      <div class="game-card"><h3>🏆 All Sports World Cup</h3><p>Multi-Sport Tournament</p><button>Join</button></div>
-    </div>
-  </section>
-  <footer><p>© 2026 Fiction 11. All Rights Reserved.</p></footer>
-  <script src="script.js"></script>
+
+  <h1>⚡ Fiction 11 ⚡</h1>
+  <div class="box">
+    <h2>Welcome Back</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <br>
+    <button onclick="login()">Login</button>
+    <button onclick="signup()">Sign Up</button>
+  </div>
+
+<script>
+function login() {
+  let user = document.getElementById("username").value;
+  if(user == "") { alert("Enter Username"); return; }
+  localStorage.setItem("user", user);
+  window.location.href = "game.html";
+}
+
+function signup() {
+  alert("Sign Up Successful!");
+  login();
+}
+</script>
+
 </body>
 </html>
