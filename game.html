@@ -1,9 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiction 11 - Fantasy Cricket</title>
+<style>
+  body { 
+    background: #f5f5f5; 
+    color: #333; 
+    font-family: 'Arial', sans-serif; 
+    padding: 15px; 
+    margin: 0;
+  }
+  .header {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  h1 { 
+    color: #ffeb3b; 
+    font-size: 28px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  .subtitle { color: white; margin: 5px 0 0 0; font-size: 14px; }
+  #wallet { 
+    background: white; padding: 15px; border-radius: 12px; 
+    text-align: center; margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 2px solid #ff9800;
+  }
+  .game-card { 
+    background: white; padding: 15px; margin: 10px 0; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  button { 
+    background: #ff5722; color: white; border: none; padding: 12px; 
+    border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px;
+    font-weight: bold; font-size: 16px;
+  }
+  .logout-btn { background: #d32f2f; padding: 8px 15px; width: auto; font-size: 14px;}
+</style>
+</head>
+<body>
+
 <div class="header">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <div>
       <h1>⚡ FICTION 11 ⚡</h1>
       <p class="subtitle">Play Fantasy • Win Real Trophy</p>
     </div>
-    <button onclick="logout()" style="background: #d32f2f; padding: 8px 15px; width: auto; font-size: 14px;">Logout</button>
+    <button onclick="logout()" class="logout-btn">Logout</button>
   </div>
 </div>
+
+<div id="wallet">Wallet Balance: <span id="balance">0</span> Taka <button onclick="addMoney()">+ Add Money</button></div>
+<div id="games"></div>
+
+<script>
+const bplPlayers = [
+  {name: "Tamim Iqbal", team: "Barishal", role: "Batter", credit: 9},
+  {name: "Shakib Al Hasan", team: "Barishal", role: "All-rounder", credit: 10}
+];
+
+let myBPLTeam = [];
+let totalCredit = 100;
+let walletBalance = parseInt(localStorage.getItem("wallet")) || 0;
+document.getElementById("balance").innerText = walletBalance;
+
+function addMoney() {
+  let amount = prompt("Enter amount to add:");
+  walletBalance = parseInt(walletBalance) + parseInt(amount);
+  localStorage.setItem("wallet", walletBalance);
+  document.getElementById("balance").innerText = walletBalance;
+}
+
+function logout() {
+  localStorage.removeItem("wallet");
+  alert("Logged out successfully!");
+  window.location.href = "index.html";
+}
+
+function showBPLPlayers() {
+  let html = `<h2>🏆 BPL 2026 - Build Team</h2>`;
+  bplPlayers.forEach((p, i) => {
+    html += `<div class="game-card">
+      <h3>${p.name}</h3>
+      <p>Team: ${p.team} | Credit: ${p.credit}</p>
+      <button onclick="addBPLPlayer(${i})">Add to Team</button>
+    </div>`;
+  });
+  document.getElementById("games").innerHTML = html;
+}
+
+function addBPLPlayer(i) {
+  alert("Player Added!");
+}
+
+showBPLPlayers();
+</script>
+</body>
+</html>
