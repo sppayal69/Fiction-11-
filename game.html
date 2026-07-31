@@ -1,111 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiction 11 - Fantasy Games</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-  
-  body { 
-    background: #f5f5f5; 
-    color: #333; 
-    font-family: 'Poppins', sans-serif; 
-    padding: 15px; 
-    margin: 0;
-  }
-
-  /* লাল Header ডিজাইন */
-  .header {
-    background: linear-gradient(135deg, #d50000, #b71c1c);
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(213, 0, 0, 0.4);
-    border-bottom: 4px solid #ffeb3b;
-  }
-  h1 { 
-    color: #ffffff; /* সাদা নাম */
-    font-size: 32px;
-    margin: 0;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    letter-spacing: 1px;
-  }
-  .subtitle { 
-    color: #ffebee; /* হালকা সাদা */
-    margin: 5px 0 0 0; 
-    font-size: 14px; 
-    font-weight: 400;
-  }
-
-  #wallet { 
-    background: white; 
-    padding: 15px; 
-    border-radius: 15px; 
-    text-align: center; 
-    margin-bottom: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-    border: 2px solid #d50000;
-    color: #333;
-  }
-  
-  /* লাল বর্ডার Category Card */
-  .category-card { 
-    background: white; 
-    padding: 20px; 
-    margin: 15px 0; 
-    border-radius: 15px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-    cursor: pointer; 
-    text-align: center; 
-    transition: 0.3s;
-    border: 2px solid #eeeeee;
-  }
-  .category-card:hover { 
-    transform: translateY(-3px); 
-    border: 2px solid #d50000;
-    box-shadow: 0 6px 20px rgba(213, 0, 0, 0.2);
-  }
-  .category-card h2 { 
-    margin: 10px 0; 
-    font-size: 22px; 
-    color: #d50000; /* লাল টাইটেল */
-    font-weight: 700;
-  }
-  .category-card p { color: #555; }
-
-  .game-card { 
-    background: white; 
-    padding: 15px; 
-    margin: 10px 0; 
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-left: 4px solid #d50000;
-  }
-
-  button { 
-    background: linear-gradient(90deg, #d50000, #ff1744); /* লাল বাটন */
-    color: white; 
-    border: none; 
-    padding: 12px; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    width: 100%; 
-    margin-top: 10px;
-    font-weight: 700; 
-    font-size: 16px;
-    transition: 0.3s;
-  }
-  button:hover { transform: scale(1.02); }
-  
-  .logout-btn { 
-    background: white; /* সাদা Logout বাটন */
-    color: #d50000;
-    padding: 8px 15px; 
-    width: auto; 
-    font-size: 14px;
-    font-weight: 700;
-    border: 2px solid white;
-  }
-  .back-btn { 
-    background: #757575; 
-    width: auto; 
-    padding: 8px 15px; 
-    margin-bottom: 15px;
-  }
+body{background:#f5f5f5;font-family:Arial;padding:15px;margin:0}
+.header{background:linear-gradient(135deg,#d50000,#b71c1c);padding:20px;border-radius:20px;margin-bottom:20px}
+h1{color:#fff;font-size:32px;margin:0;text-align:center}
+.subtitle{color:#ffebee;text-align:center}
+#wallet{background:white;padding:15px;border-radius:15px;text-align:center;margin-bottom:15px;border:2px solid #d50000}
+.category-card{background:white;padding:20px;margin:15px 0;border-radius:15px;text-align:center;border:2px solid #eee;cursor:pointer}
+.category-card h2{color:#d50000}
+button{background:linear-gradient(90deg,#d50000,#ff1744);color:white;border:none;padding:12px;border-radius:10px;width:100%;font-weight:bold}
+.logout-btn{background:white;color:#d50000;width:auto}
 </style>
+</head>
+<body>
+<div class="header"><h1>FICTION 11</h1><p class="subtitle">Play Fantasy • Win Real Trophy</p></div>
+<div id="wallet">Wallet Balance: <span id="balance">0</span> Taka <button onclick="addMoney()">+ Add Money</button></div>
+<div id="main-content"></div>
+<script>
+let walletBalance=parseInt(localStorage.getItem("wallet"))||0;
+document.getElementById("balance").innerText=walletBalance;
+function addMoney(){let a=prompt("Enter amount:");if(a){walletBalance+=parseInt(a);localStorage.setItem("wallet",walletBalance);document.getElementById("balance").innerText=walletBalance}}
+function showCategories(){document.getElementById("main-content").innerHTML=`<h2>Select Game Category</h2><div class="category-card" onclick="alert('Coming Soon')"><h2>🏏 Cricket</h2><p>BPL, IPL</p></div><div class="category-card" onclick="alert('Coming Soon')"><h2>⚽ Football</h2><p>EPL</p></div>`}
+showCategories();
+</script>
+</body>
+</html>
