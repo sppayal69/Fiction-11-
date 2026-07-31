@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiction 11 - Fantasy Games</title>
+<title>Fiction 11</title>
 <style>
 body{background:#f5f5f5;font-family:Arial;padding:15px;margin:0}
-.header{background:linear-gradient(135deg,#d50000,#b71c1c);padding:20px;border-radius:20px;margin-bottom:20px}
-h1{color:#fff;font-size:32px;margin:0;text-align:center}
-.subtitle{color:#ffebee;text-align:center}
-#wallet{background:white;padding:15px;border-radius:15px;text-align:center;margin-bottom:15px;border:2px solid #d50000}
-.category-card{background:white;padding:20px;margin:15px 0;border-radius:15px;text-align:center;border:2px solid #eee;cursor:pointer}
-.category-card h2{color:#d50000}
-button{background:linear-gradient(90deg,#d50000,#ff1744);color:white;border:none;padding:12px;border-radius:10px;width:100%;font-weight:bold}
-.logout-btn{background:white;color:#d50000;width:auto}
+.header{background:linear-gradient(135deg,#d50000,#b71c1c);padding:20px;border-radius:20px;margin-bottom:20px;text-align:center}
+h1{color:#fff;font-size:32px;margin:0}
+#wallet{background:white;padding:15px;border-radius:15px;text-align:center;margin-bottom:15px;border:2px solid #d50000;font-weight:bold}
+h2{text-align:center;color:#d50000}
+.category-card{background:white;padding:20px;margin:15px 0;border-radius:15px;text-align:center;border:2px solid #eee;font-size:20px}
 </style>
 </head>
 <body>
-<div class="header"><h1>FICTION 11</h1><p class="subtitle">Play Fantasy • Win Real Trophy</p></div>
-<div id="wallet">Wallet Balance: <span id="balance">0</span> Taka <button onclick="addMoney()">+ Add Money</button></div>
-<div id="main-content"></div>
-<script>
-let walletBalance=parseInt(localStorage.getItem("wallet"))||0;
-document.getElementById("balance").innerText=walletBalance;
-function addMoney(){let a=prompt("Enter amount:");if(a){walletBalance+=parseInt(a);localStorage.setItem("wallet",walletBalance);document.getElementById("balance").innerText=walletBalance}}
-function showCategories(){document.getElementById("main-content").innerHTML=`<h2>Select Game Category</h2><div class="category-card" onclick="alert('Coming Soon')"><h2>🏏 Cricket</h2><p>BPL, IPL</p></div><div class="category-card" onclick="alert('Coming Soon')"><h2>⚽ Football</h2><p>EPL</p></div>`}
-showCategories();
-</script>
+
+<div class="header"><h1>FICTION 11</h1></div>
+
+<div id="wallet">Wallet: <span id="balance">0</span> Taka</div>
+
+<h2>Select Game Category</h2>
+
+<div class="category-card">🏏 Cricket</div>
+<div class="category-card">⚽ Football</div>
+<div class="category-card">🔥 Free Fire</div>
+<div class="category-card">💪 WWE</div>
+<div class="category-card">🎮 Others</div>
+
 </body>
 </html>
