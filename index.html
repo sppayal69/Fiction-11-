@@ -7,7 +7,26 @@
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome Icon for Question Mark -->
     <link rel="stylesheet" href="https://cloudflare.com">
-</head>
+</head><script type="module">
+  // Firebase SDK import
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+  // তোমার Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAuzFmnf3jR1ApjhHsTIf2jmJPT3FgqDRM",
+    authDomain: "fiction-11.firebaseapp.com",
+    projectId: "fiction-11",
+    storageBucket: "fiction-11.firebasestorage.app",
+    messagingSenderId: "96916072215",
+    appId: "1:96916072215:web:cb814a5c83f36f95a6b952",
+    measurementId: "G-Z28JWK5WZD"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // এটাই Firestore
+</script>
 <body>
 
     <!-- 1. Splash Screen Section (Shows initially for 3 seconds) -->
