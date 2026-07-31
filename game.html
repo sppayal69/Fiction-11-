@@ -1,119 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiction 11 - Fantasy Games</title>
 <style>
-  body { background: #f5f5f5; color: #333; font-family: 'Arial', sans-serif; padding: 15px; margin: 0;}
-  .header { background: linear-gradient(90deg, #1e3c72, #2a5298); padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
-  h1 { color: #ffeb3b; font-size: 28px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);}
-  .subtitle { color: white; margin: 5px 0 0 0; font-size: 14px; }
-  #wallet { background: white; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 2px solid #ff9800;}
-  .category-card { background: white; padding: 20px; margin: 15px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; text-align: center; transition: 0.3s;}
-  .category-card:hover { transform: scale(1.02); }
-  .category-card h2 { margin: 10px 0; font-size: 22px; }
-  .game-card { background: white; padding: 15px; margin: 10px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
-  button { background: #ff5722; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; font-size: 16px;}
-  .logout-btn { background: #d32f2f; padding: 8px 15px; width: auto; font-size: 14px;}
-  .back-btn { background: #607d8b; width: auto; padding: 8px 15px; margin-bottom: 15px;}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h1>⚡ FICTION 11 ⚡</h1>
-      <p class="subtitle">Play Fantasy • Win Real Trophy</p>
-    </div>
-    <button onclick="logout()" class="logout-btn">Logout</button>
-  </div>
-</div>
-
-<div id="wallet">Wallet Balance: <span id="balance">0</span> Taka <button onclick="addMoney()">+ Add Money</button></div>
-<div id="main-content"></div>
-
-<script>
-let walletBalance = parseInt(localStorage.getItem("wallet")) || 0;
-document.getElementById("balance").innerText = walletBalance;
-
-function addMoney() {
-  let amount = prompt("Enter amount to add:");
-  if(amount){
-    walletBalance = parseInt(walletBalance) + parseInt(amount);
-    localStorage.setItem("wallet", walletBalance);
-    document.getElementById("balance").innerText = walletBalance;
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  
+  body { 
+    background: #f5f5f5; 
+    color: #333; 
+    font-family: 'Poppins', sans-serif; 
+    padding: 15px; 
+    margin: 0;
   }
-}
 
-function logout() {
-  localStorage.removeItem("wallet");
-  alert("Logged out successfully!");
-  window.location.href = "index.html";
-}
+  /* লাল Header ডিজাইন */
+  .header {
+    background: linear-gradient(135deg, #d50000, #b71c1c);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(213, 0, 0, 0.4);
+    border-bottom: 4px solid #ffeb3b;
+  }
+  h1 { 
+    color: #ffffff; /* সাদা নাম */
+    font-size: 32px;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+  }
+  .subtitle { 
+    color: #ffebee; /* হালকা সাদা */
+    margin: 5px 0 0 0; 
+    font-size: 14px; 
+    font-weight: 400;
+  }
 
-// 1. Category Page দেখাবে
-function showCategories() {
-  document.getElementById("main-content").innerHTML = `
-    <h2>Select Game Category</h2>
-    <div class="category-card" onclick="showCricket()">
-      <h2>🏏 Cricket</h2>
-      <p>BPL, IPL, World Cup Fantasy</p>
-    </div>
-    <div class="category-card" onclick="showFootball()">
-      <h2>⚽ Football</h2>
-      <p>EPL, La Liga, World Cup</p>
-    </div>
-    <div class="category-card" onclick="showFreeFire()">
-      <h2>🔥 Free Fire</h2>
-      <p>CS Rank, Clash Squad</p>
-    </div>
-    <div class="category-card" onclick="showWWE()">
-      <h2>💪 WWE</h2>
-      <p>Raw, SmackDown Fantasy</p>
-    </div>
-    <div class="category-card" onclick="showOthers()">
-      <h2>🎮 Others</h2>
-      <p>PUBG, Valorant, More</p>
-    </div>
-  `;
-}
+  #wallet { 
+    background: white; 
+    padding: 15px; 
+    border-radius: 15px; 
+    text-align: center; 
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+    border: 2px solid #d50000;
+    color: #333;
+  }
+  
+  /* লাল বর্ডার Category Card */
+  .category-card { 
+    background: white; 
+    padding: 20px; 
+    margin: 15px 0; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    cursor: pointer; 
+    text-align: center; 
+    transition: 0.3s;
+    border: 2px solid #eeeeee;
+  }
+  .category-card:hover { 
+    transform: translateY(-3px); 
+    border: 2px solid #d50000;
+    box-shadow: 0 6px 20px rgba(213, 0, 0, 0.2);
+  }
+  .category-card h2 { 
+    margin: 10px 0; 
+    font-size: 22px; 
+    color: #d50000; /* লাল টাইটেল */
+    font-weight: 700;
+  }
+  .category-card p { color: #555; }
 
-// 2. Cricket Page
-function showCricket() {
-  document.getElementById("main-content").innerHTML = `
-    <button class="back-btn" onclick="showCategories()">← Back to Categories</button>
-    <h2>🏆 BPL 2026 - Build Team</h2>
-    <div class="game-card">
-      <h3>Tamim Iqbal</h3>
-      <p>Team: Barishal | Credit: 9</p>
-      <button onclick="alert('Added!')">Add to Team</button>
-    </div>
-    <div class="game-card">
-      <h3>Shakib Al Hasan</h3>
-      <p>Team: Barishal | Credit: 10</p>
-      <button onclick="alert('Added!')">Add to Team</button>
-    </div>
-  `;
-}
+  .game-card { 
+    background: white; 
+    padding: 15px; 
+    margin: 10px 0; 
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid #d50000;
+  }
 
-// 3. বাকি গেম গুলা
-function showFootball() {
-  document.getElementById("main-content").innerHTML = `<button class="back-btn" onclick="showCategories()">← Back</button><h2>⚽ Football Games Coming Soon...</h2>`;
-}
-function showFreeFire() {
-  document.getElementById("main-content").innerHTML = `<button class="back-btn" onclick="showCategories()">← Back</button><h2>🔥 Free Fire Tournaments Coming Soon...</h2>`;
-}
-function showWWE() {
-  document.getElementById("main-content").innerHTML = `<button class="back-btn" onclick="showCategories()">← Back</button><h2>💪 WWE Matches Coming Soon...</h2>`;
-}
-function showOthers() {
-  document.getElementById("main-content").innerHTML = `<button class="back-btn" onclick="showCategories()">← Back</button><h2>🎮 Other Games Coming Soon...</h2>`;
-}
-
-// শুরুতে Category দেখাবে
-showCategories();
-</script>
-</body>
-</html>
+  button { 
+    background: linear-gradient(90deg, #d50000, #ff1744); /* লাল বাটন */
+    color: white; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    width: 100%; 
+    margin-top: 10px;
+    font-weight: 700; 
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  button:hover { transform: scale(1.02); }
+  
+  .logout-btn { 
+    background: white; /* সাদা Logout বাটন */
+    color: #d50000;
+    padding: 8px 15px; 
+    width: auto; 
+    font-size: 14px;
+    font-weight: 700;
+    border: 2px solid white;
+  }
+  .back-btn { 
+    background: #757575; 
+    width: auto; 
+    padding: 8px 15px; 
+    margin-bottom: 15px;
+  }
+</style>
