@@ -88,13 +88,15 @@ body {
 .top-nav {
     display: flex;
     justify-content: flex-end;
+    padding-top: 10px;
+    z-index: 20;
 }
 
 .help-btn {
     background: none;
     border: none;
     color: #8e929a;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
 }
 
@@ -103,8 +105,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .main-logo {
@@ -168,7 +170,7 @@ body {
 
 .divider {
     text-align: center;
-    margin: 25px 0;
+    margin: 20px 0;
     position: relative;
 }
 
@@ -192,19 +194,20 @@ body {
     z-index: 2;
 }
 
+/* Fixed Google Button Styles */
 #google-btn {
     width: 100%;
     padding: 14px;
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #33363e;
     border-radius: 25px;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -214,7 +217,9 @@ body {
 }
 
 #google-btn img {
-    width: 20px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 #msg-box {
