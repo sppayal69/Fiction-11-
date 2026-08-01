@@ -5,31 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiction 11 - Fantasy Sports</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome Icon for Question Mark -->
+    <!-- Font Awesome Icon Link (Fixed for question mark) -->
     <link rel="stylesheet" href="https://cloudflare.com">
-</head><script type="module">
-  // Firebase SDK import
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-
-  // তোমার Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyAuzFmnf3jR1ApjhHsTIf2jmJPT3FgqDRM",
-    authDomain: "fiction-11.firebaseapp.com",
-    projectId: "fiction-11",
-    storageBucket: "fiction-11.firebasestorage.app",
-    messagingSenderId: "96916072215",
-    appId: "1:96916072215:web:cb814a5c83f36f95a6b952",
-    measurementId: "G-Z28JWK5WZD"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app); // এটাই Firestore
-</script>
+</head>
 <body>
 
-    <!-- 1. Splash Screen Section (Shows initially for 3 seconds) -->
+    <!-- 1. Splash Screen Section -->
     <div id="splash-screen">
         <div class="splash-logo">F</div>
         <div class="splash-footer">
@@ -65,10 +46,10 @@
 
             <div class="divider"><span>Or</span></div>
 
-            <!-- Google Login Button -->
+            <!-- Google Login Button (Logo Fixed) -->
             <button id="google-btn">
-                <img src="https://wikimedia.org" alt="Google Logo">
-                Continue with Google
+                <img src="https://gstatic.com" alt="Google Logo">
+                <span>Continue with Google</span>
             </button>
             
             <p id="msg-box"></p>
@@ -86,7 +67,5 @@
     </div>
 
     <script src="script.js"></script>
-    
 </body>
-  </html>
-  
+</html>
