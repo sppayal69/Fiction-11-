@@ -1,43 +1,37 @@
-const bplPlayers = [
-  {name: "Tamim Iqbal", team: "Barishal", role: "Batter", credit: 9},
-  {name: "Shakib Al Hasan", team: "Barishal", role: "All-rounder", credit: 10},
-  {name: "Litton Das", team: "Cumilla", role: "WK-Batter", credit: 9},
-  {name: "Mustafizur Rahman", team: "Cumilla", role: "Bowler", credit: 8.5},
-  {name: "Taskin Ahmed", team: "Dhaka", role: "Bowler", credit: 9},
-  {name: "Mahmudullah", team: "Dhaka", role: "All-rounder", credit: 8},
-  {name: "Soumya Sarkar", team: "Rangpur", role: "Batter", credit: 7.5}
-];
+// 1. Show splash screen for 3 seconds, then hide and show login
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("splash-screen").style.display = "none";
+        document.getElementById("login-container").style.display = "flex";
+    }, 3000); // 3000 milliseconds = 3 seconds
+});
 
-let myBPLTeam = [];
-let totalCredit = 100;
+// 2. Input Validation and Button Activation
+const userInput = document.getElementById("user-input");
+const continueBtn = document.getElementById("continue-btn");
+const msgBox = document.getElementById("msg-box");
 
-function showBPLPlayers() {
-  let html = `<h2>🏆 BPL 2026 Build Team - 100 Credits</h2>`;
-  html += `<p>Credits Left: <span id="credit">${totalCredit}</span></p>`;
+userInput.addEventListener("input", () => {
+    // Enable button if user types more than 3 characters
+    if (userInput.value.trim().length > 3) {
+        continueBtn.removeAttribute("disabled");
+        continueBtn.classList.add("active");
+    } else {
+        continueBtn.setAttribute("disabled", "true");
+        continueBtn.classList.remove("active");
+    }
+});
 
-  bplPlayers.forEach((p, i) => {
-    html += `<div class="game-card">
-      <h3>${p.name}</h3>
-      <p>Team: ${p.team} | Role: ${p.role}</p>
-      <p>Credit: ${p.credit}</p>
-      <button onclick="addBPLPlayer(${i})">Add to Team</button>
-    </div>`;
-  });
-  document.getElementById("games").innerHTML = html;
-}
+// 3. Form Submission Action
+document.getElementById("login-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = userInput.value.trim();
+    
+    msgBox.style.color = "#00ffcc";
+    msgBox.innerText = `Sending OTP to ${value}...`;
+});
 
-function addBPLPlayer(i) {
-  let player = bplPlayers[i];
-  if(myBPLTeam.length < 7 && totalCredit >= player.credit) {
-    myBPLTeam.push(player);
-    totalCredit = totalCredit - player.credit;
-    document.getElementById("credit").innerText = totalCredit.toFixed(1);
-    alert(player.name + " added! Total: " + myBPLTeam.length + " players");
-  } else if(myBPLTeam.length >= 7) {
-    alert("You already picked 7 players!");
-  } else {
-    alert("Not enough credits!");
-  }
-}
-
-showBPLPlayers();
+// 4. Google Login Button Action
+document.getElementById("google-btn").addEventListener("click", () => {
+    alert("Google Sign-In integration coming soon!");
+});
